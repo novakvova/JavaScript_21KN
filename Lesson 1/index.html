@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Голована сторінка</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+
+<body>
+    <h1 class="text-center">Привіт козаки і козачки</h1>
+    <h2 style="text-align: center;">Командос</h2>
+
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Ім'я</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+
+                <button type="submit" id="mybutton" class="btn btn-primary">Нажми мене</button>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        var btn = document.getElementById("mybutton");
+        var i = 0;
+        btn.onclick = function() {
+            i=i+1;
+            console.log("нажали кнопку", i);
+        }
+        // console.log("my button", btn);
+    </script>
+
+    <!-- Підтягуємо код js зовнішнього файлу -->
+    <!-- <script src="/myjs/one.js"></script> -->
+    <script>
+
+    </script>
+
+</body>
+
+</html>
