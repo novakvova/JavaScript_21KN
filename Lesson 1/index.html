@@ -17,10 +17,31 @@
             <div class="offset-md-3 col-md-6">
                 <div class="mb-3">
                     <label for="name" class="form-label">Ім'я</label>
-                    <input type="text" class="form-control" id="name">
+                    <input type="text" 
+                        name="name"    
+                        class="form-control" 
+                        id="name"/>
                 </div>
 
-                <button type="submit" id="mybutton" class="btn btn-primary">Нажми мене</button>
+                <div class="mb-3">
+                    <label for="last_name" class="form-label">Прізвище</label>
+                    <input type="text" 
+                        name="last_name"    
+                        class="form-control" 
+                        id="last_name"/>
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Телефон</label>
+                    <input type="text" 
+                        name="phone"    
+                        class="form-control" 
+                        id="phone"/>
+                </div>
+
+                <button type="submit" 
+                    id="mybutton" 
+                    class="btn btn-primary">Нажми мене</button>
             </div>
             
         </div>
@@ -31,12 +52,15 @@
 
     <script>
         var btn = document.getElementById("mybutton");
-        var i = 0;
         btn.onclick = function() {
-            i=i+1;
-            console.log("нажали кнопку", i);
+            const name = document.getElementById("name").value;
+            const lastname = document.getElementById("last_name").value;
+            const phone = document.getElementById("phone").value;
+            // console.log("name", name);
+            // console.log("lastname", lastname);
+            // console.log("phone", phone);
+            alert(`Вітаємо у нашому порталі ${lastname} ${name} -- ${phone}`);
         }
-        // console.log("my button", btn);
     </script>
 
     <!-- Підтягуємо код js зовнішнього файлу -->
