@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин АТБ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <h1 class="text-center">Головна сторінка</h1>
+    <div class="container">
+        <div class="row">
+            <div class="offset-3 col-6">
+                <form class="needs-validation" novalidate> 
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Прізвище</label>
+                        <input type="text" class="form-control" id="lastName" required>
+                        <div class="invalid-feedback">
+                            Вкажіть прізвище користувача
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Ім'я</label>
+                        <input type="text" class="form-control" id="name" required>
+                        <div class="invalid-feedback">
+                            Вкажіть ім'я користувача
+                        </div>
+                    </div>
+                    <!-- <span>Привіт я голодний!</span>
+                    <br/> -->
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // console.log("Наш JavaScript");
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        //Отримуємо список елементів, які мають клас .needs-validation
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        //перебираю усі форми і починами на них перехоплювати подію submit - відправка форми
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated');
+
+                event.preventDefault(); //Зупитання стандартну поведінку форми
+            }, false);
+        })
+    </script>
+</body>
+
+
+
+</html>
