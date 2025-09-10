@@ -1,0 +1,6 @@
+Підготувати дані для відправки на сервер
+https://lohika.itstep.click/swagger/index.html
+Дані мають бути підготовлені для відправки на адресу 
+https://lohika.itstep.click/api/Account/register
+На 12 балів файл зображення перетворити у base64. 
+Познайомитися із даним форматом
