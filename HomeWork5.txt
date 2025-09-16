@@ -1,0 +1,5 @@
+Зробити відправка даних на сервер.
+Використати метод відправки POST
+https://lohika.itstep.click/api/Account/register
+Дані мають бути у форматі JSON
+Для відправки можна використати XMLHttpRequest, fetch, axios

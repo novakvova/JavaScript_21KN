@@ -30,12 +30,43 @@
                         </div>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Телефон</label>
+                        <input type="text" class="form-control" id="phone" required>
+                        <div class="invalid-feedback">
+                            Вкажіть телефон користувача
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Електронна пошта</label>
+                        <input type="email" class="form-control" id="email" required>
+                        <div class="invalid-feedback">
+                            Вкажіть електронна пошта користувача
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Пароль</label>
+                        <input type="password" class="form-control" id="password" required>
+                        <div class="invalid-feedback">
+                            Вкажіть пароль користувача
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Повтор пароля</label>
+                        <input type="password" class="form-control" 
+                            id="confirmPassword" required>
+                        <div class="invalid-feedback">
+                            Вкажіть повторно пароль користувача
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-3">
                             <img src="https://www.shutterstock.com/image-vector/no-bear-sign-on-white-260nw-2168000361.jpg"
-                                style = "width: 100%;" 
-                                alt="Ваше фото" 
-                                id="previewImage">
+                                style="width: 100%;" alt="Ваше фото" id="previewImage">
                         </div>
                         <div class="col-9">
                             <div class="mb-3">
@@ -63,6 +94,8 @@
 
         const photo = document.getElementById("photo");
 
+        let base64 = ""; //зберігає base64 
+
         //console.log("photo", photo);
 
         photo.addEventListener("change", function (e) {
@@ -71,9 +104,16 @@
                 console.log("Ви обрали файл", file);
                 if (/^image\/\w+/.test(file.type)) {
 
-                    document.getElementById("previewImage").src=URL.createObjectURL(file);
-                    //regex  - 
+                    document.getElementById("previewImage").src = URL.createObjectURL(file);
+                    const reader = new FileReader();
+                    
+                    reader.onload = function() {
+                        var result = reader.result;
+                        base64 = result; //зберігаємо base64
+                        //console.log("base64", result);
+                    };
 
+                    reader.readAsDataURL(file);
                 }
                 else {
                     alert("Оберіть файл фото :)");
@@ -101,10 +141,22 @@
                     event.preventDefault()
                     event.stopPropagation()
                 }
-
+                else {
+                    event.preventDefault(); //Зупитання стандартну поведінку форми
+                    //Екма скріпт 6 - старт JavaScript - 2015
+                    const model =
+                    {
+                        firstName: document.getElementById("name").value,
+                        secondName: document.getElementById("lastName").value,
+                        phone: document.getElementById("phone").value,
+                        email: document.getElementById("email").value,
+                        password: document.getElementById("password").value,
+                        confirmPassword: document.getElementById("confirmPassword").value,
+                        photo: base64 //base64 фото
+                    };
+                    console.log("Send data server", model);
+                }
                 form.classList.add('was-validated');
-
-                event.preventDefault(); //Зупитання стандартну поведінку форми
             }, false);
         })
     </script>
