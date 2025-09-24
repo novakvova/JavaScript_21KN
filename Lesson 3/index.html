@@ -25,8 +25,54 @@
         </tbody>
     </table>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.11.0/axios.min.js"></script>
+
     <script>
-        
+        const requestUsers = async () => {
+            try 
+            {
+                const url = "https://lohika.itstep.click/api/Users/all";
+                //Зберігає результат, що повертає axios
+                const response = await axios.get(url);
+                //const user1 = response.data[0]; //Перший із списку
+                // console.log("result server", response);
+                // console.log("user1", user1);
+                const users = response.data;
+                // console.log("Users", users);
+                const n = users.length;
+                const listUsers = document.getElementById("listUsers");
+                for(let i = 0; i < n; i++) 
+                {
+                     console.log("user ", users[i]);
+                     const urlImage = `https://lohika.itstep.click/images/200_${users[i].photo}`;
+                    //  console.log("images", urlImage);
+
+                    listUsers.innerHTML +=
+                    `
+            <tr>
+                <th scope="row">${users[i].id}</th>
+                <td>${users[i].secondName} ${users[i].firstName}</td>
+                <td>
+                    <img src="${urlImage}"
+                        width="75" 
+                        alt="Фото користувача">
+                </td>
+                <td></td>
+            </tr>
+                    `;
+                }
+            }
+            catch(problem) 
+            {
+                console.log("Хюстон у нас проблеми",problem);
+            }
+        }
+    </script>
+
+    <script>
+        //Викликаємо функцію, яка посилає запит
+        requestUsers();
+
         const listBears = [
             {
                 id: 1,
@@ -41,6 +87,7 @@
             
             }
         ];
+        console.log("List Bears", listBears);
         const n=listBears.length;
         const listUsers = document.getElementById("listUsers");
         for(let i=0; i<n; i++)
