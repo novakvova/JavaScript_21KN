@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Робота з промісами</title>
+</head>
+<body>
+    <h1>Використання промісів</h1>
+
+    <script>
+        //Проміс - це асинхроний метод, який повертає 2 стани
+        //reject - помилка. Тобто при роботі сталася помилка і 
+        //можна отримати повідомлення про помилку.
+        //resolve - це успіх задача виконана успішно і ми можемо отримати
+        //результат
+        //Проміс - це якась робота Вашої програми
+        //Проміс приймає вказівник на фукнцію
+        //
+        let myPromise = new Promise(function(resolve, reject) {
+            //Проміс завжди, щось має повертати
+            //Виконати певну роботу через проміжок часу
+            setTimeout(() => {
+                resolve("Я добрався до хати :). Це успіх");
+            },2000);
+
+            setTimeout(() => {
+                reject("Стикнувся із стовпом :( Негативна робота");
+            }, 2500);
+        });
+
+        //Щоб працювати із промісом - ми маємо визвати його методи
+        //Можна використовувати async та await
+        //Можна використовувати then та catch
+        // console.log("---Початок роботи нашого промісу---");
+        // myPromise
+        //     .then(result => {
+        //         console.log("Проміс успішно завершив робту", result);  
+        //     })
+        //     .catch(problem => {
+        //         console.log("У програмі трапилася помилка", problem);
+        //     });
+        // console.log("---Робота коду іде далі---");
+        //Асинхрона функція
+        const myWorker = async () => {
+            try {
+                const result = await myPromise;
+                console.log("Проміс успішно завершив робту", result); 
+            }
+            catch(problem) {
+                console.log("У програмі трапилася помилка", problem);
+            }
+        }
+        myWorker();
+
+    </script>
+</body>
+</html>
