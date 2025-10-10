@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Привіт Select2</title>
+    <!-- Щоб працювала бібліотека select2 потрібно css та js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+</head>
+<body>
+    <h1>Select2 Привіт</h1>
+    <h2>Наші друзі</h2>
+    <input type="text" id="myText"/> 
+    <button id="btnAddName">Додати</button> 
+    <br/>
+    <hr/>
+    <!-- На сайті зробити тестове поле і кнопку додати
+    Якщо натиснули додати елемент додається у select 
+    Використати jQuery
+    Також зробити перевірку, щоб поле не було пустим-->
+    <select name="names" id="names">
+        <option value="1">Іван</option>
+        <option value="2">Петро</option>
+        <option value="3">Оксана</option>
+    </select>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document)
+            .ready(() => {
+
+                $("#btnAddName").on("click", () => {
+                    const text =  $("#myText").val();
+                    console.log("Натиснута кнопка", text);
+                });
+                // console.log("Document Ready");
+                $("#names").select2({
+                    width: "200px"
+                });
+            });
+    </script>
+</body>
+</html>
