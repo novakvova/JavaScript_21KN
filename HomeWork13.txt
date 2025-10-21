@@ -1,0 +1,4 @@
+API для фільмів http://www.omdbapi.com/?t=Inception&apikey=YOUR_API_KEY
+Отримати список фільмів передати їх для source для autocomplete jQuyre
+Пртестувати його роботу.
+Якщо не вийде api, то зробити просто масив для фільмів.

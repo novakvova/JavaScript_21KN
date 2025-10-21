@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Робота з WebStorage</title>
+</head>
+<body>
+    <h1>Робота з WebStorage</h1>
+    <button id="addLocalStorage">Додати у LocalStorage</button>
+    <button id="readLocalStorage">Прочати дані з LocalStorage</button>
+
+    <script>
+        const addLocalStorage = document.getElementById("addLocalStorage");
+        addLocalStorage
+            .addEventListener("click", () => {
+                // console.log("Add event click");
+                localStorage.name="Марко";
+            });
+
+        const readLocalStorage = document.getElementById("readLocalStorage");
+        readLocalStorage
+            .addEventListener("click", () => {
+                alert(localStorage.name);
+            });
+    </script>
+</body>
+</html>

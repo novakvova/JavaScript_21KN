@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autocompete</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+</head>
+<body>
+    <h1>Привіт jQuery</h1>
+    <input type="text" id="search">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+    <script>
+        //'' та "" - без різниці
+        $(document).ready(() => {
+            //Різниця між let і var
+            for(let i = 0; i < 5; i++) {
+                let number = i+1; //var доступний замежами for
+                console.log("Hello "+ number);
+            }
+            // console.log("Привіт jQuery " + number);
+            let items = [
+                "Вова",
+                "Іван",
+                "Сергій",
+                "Марина",
+                "Мальвіна",
+                "Петро",
+                "Павло"
+            ];
+            //Підтягунти список фільмів із API
+            $("#search").autocomplete({
+                source: items
+            });
+
+            
+        });
+        //console.log("number == " + number);
+    </script>
+
+</body>
+</html>

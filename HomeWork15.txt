@@ -1,0 +1,70 @@
+У класній роботі поле <input type="text"> змінити на <textarea>
+Стилізувати під bootstrap
+На 12 балів підлючити до textarea - tinymce або його альтернативу
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Модальні вікна</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <h1 class="text-center">Привіт команда</h1>
+
+    <!-- Ми маємо тестове поле, коли можна написати текст, який буде появлятися у модальному вікні
+    При відображені модального вікна - цей текст із input має відображатися у модальному вікні -->
+
+    <div class="container">
+        <div class="mb-3">
+            <input type="text" class="form-control" id="myText">
+        </div>
+
+        <button id="myButtonHello" class="btn btn-success">Нажми мене</button>
+        
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary d-none" 
+                id="openModalBtn"
+                data-bs-toggle="modal" 
+                data-bs-target="#happyModal">
+            Подаруй собі щасття
+        </button>
+    </div>
+
+
+
+    <div class="modal fade" id="happyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div> -->
+                <div class="modal-body" id="modalBodyContent">
+                    Ви виграли мільйон доларів!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.getElementById("myButtonHello").addEventListener("click", () => {
+            const userInput = document.getElementById("myText").value;
+            // alert(userInput);
+            //Відкриття модального вікна із текстом із input
+            document.getElementById("modalBodyContent").innerText = userInput;
+            document.getElementById("openModalBtn").click();
+        });
+    </script>
+</body>
+</html>
