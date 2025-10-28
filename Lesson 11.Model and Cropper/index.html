@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Використання бібліотеки cropperjs</title>
+    <link rel="stylesheet" href="/scripts/cropper.min.css">
+</head>
+<body>
+    <h1>То є cropperjs</h1>
+
+    <img src="/images/1.jpg" 
+        alt="Моє фото" 
+        id="myDog"
+        width="300">
+
+    <script src="/scripts/cropper.min.js"></script>
+    <script>
+    window.addEventListener('DOMContentLoaded', function () {
+        var image = document.querySelector('#myDog');
+         var cropper = new Cropper(image, {
+            aspectRatio: 1 / 1
+         });
+    });
+    </script>
+</body>
+</html>

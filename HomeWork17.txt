@@ -1,0 +1,24 @@
+Ми має об'єкти із помилками
+const errors = {
+            email: [
+                "Пошта є не коректною!",
+                "Пошта вказано не коректно"
+            ],
+            phone: [
+                "Поле телефон є обов'язковим!",
+                "Вкажіть правильний формат номеру +38(ххх)хх-хх-ххх"
+            ]
+        };
+На основі даного об'єкту зробити відображення помилок на формі
+<form class="col-md-6 offset-md-3">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email">
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Телефон</label>
+                <input type="text" class="form-control" id="phone">
+            </div>
+            <button type="submit" class="btn btn-primary">Реєструватися</button>
+        </form>
+Якщо об'єкти зміниться або помилка буде видалена, тоді помилки виводитися не будуть.
