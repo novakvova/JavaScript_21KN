@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Робота з класами</title>
+</head>
+<body>
+    <h1>Привіт! Я козак.</h1>
+
+    <script>
+        // console.log("Привіт!");
+
+        class mySite 
+        {
+            title = ""; //поле класу
+            constructor() {
+                console.log("Це конструктор :)");
+                this.title="Наш сайт"
+            }
+            print(str) {
+                console.log("На прийшов "+str);
+            }
+
+        }
+
+        let site = new mySite();
+        console.log(site.title);
+        site.print("Пельмені :)");
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Введення в події</title>
+    <link rel="stylesheet" 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
+    <style>
+        /* CSS: помістіть в окремий файл або <style> в head */
+:root{
+  --size: 120px;            /* висота корпуса */
+  --width: calc(var(--size) * 0.6); /* ширина корпуса */
+  --bulb-d: calc(var(--width) * 0.6); /* діаметр лампочки */
+  --gap: 12px;              /* відстань між лампочками */
+  --housing-bg: #111;       /* фон корпуса */
+  --off-opacity: 0.18;      /* непрозорість вимкненої лампи */
+  --shadow: 0 6px 18px rgba(0,0,0,0.6);
+  --glass: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.06));
+  --radius: 20px;
+}
+
+/* Контейнер */
+.traffic-light{
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  user-select: none;
+}
+
+/* Корпус */
+.traffic-light .housing{
+  width: var(--width);
+  height: var(--size);
+  background: var(--housing-bg);
+  border-radius: var(--radius);
+  padding: calc(var(--gap) / 2);
+  box-shadow: var(--shadow), inset 0 2px 8px rgba(255,255,255,0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Полюс (опціонально) */
+.traffic-light .pole{
+  width: calc(var(--width) * 0.25);
+  height: 120px;
+  background: linear-gradient(180deg,#222,#111);
+  border-radius: 6px;
+  margin-top: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* Лампочки */
+.bulb{
+  width: var(--bulb-d);
+  height: var(--bulb-d);
+  border-radius: 50%;
+  background: #222;
+  opacity: var(--off-opacity);
+  box-shadow: inset 0 -6px 18px rgba(0,0,0,0.6);
+  display: inline-block;
+  transition: opacity 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+  position: relative;
+  backface-visibility: hidden;
+}
+
+/* скляний блиск */
+.bulb::after{
+  content: "";
+  position: absolute;
+  left: 6%;
+  top: 6%;
+  width: 88%;
+  height: 40%;
+  border-radius: 50%;
+  background: var(--glass);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Колірні класи (вимкнені станом за замовчуванням) */
+.bulb.red{
+  background: radial-gradient(circle at 35% 25%, #ff7b7b, #aa0000 60%);
+}
+.bulb.yellow{
+  background: radial-gradient(circle at 35% 25%, #fff3a6, #d9a900 60%);
+}
+.bulb.green{
+  background: radial-gradient(circle at 35% 25%, #b9f3b5, #0a8b3a 60%);
+}
+
+/* Клас для вмикання лампи */
+.bulb.on{
+  opacity: 1;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 0 28px rgba(255,255,255,0.06), 0 0 40px currentColor;
+}
+
+/* Підсилюємо зовнішнє світіння залежно від кольору */
+.bulb.red.on{ color: rgba(255,60,60,0.95); filter: drop-shadow(0 8px 18px rgba(255,40,40,0.28)); }
+.bulb.yellow.on{ color: rgba(255,210,60,0.95); filter: drop-shadow(0 8px 18px rgba(255,200,60,0.28)); }
+.bulb.green.on{ color: rgba(80,230,120,0.95); filter: drop-shadow(0 8px 18px rgba(80,200,100,0.28)); }
+
+/* Мерехтіння (легке анімаційне підсвічування) */
+@keyframes pulse {
+  0% { transform: translateY(-2px) scale(1.02); opacity: 0.95; }
+  50% { transform: translateY(-3px) scale(1.04); opacity: 1; }
+  100% { transform: translateY(-2px) scale(1.02); opacity: 0.95; }
+}
+.bulb.on.pulse {
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+/* Горизонтальний варіант */
+.traffic-light.horizontal .housing{
+  width: calc(var(--size));
+  height: var(--width);
+  flex-direction: row;
+  padding: calc(var(--gap) / 2);
+  border-radius: calc(var(--radius) / 2);
+}
+.traffic-light.horizontal .pole{ display:none; }
+.traffic-light.horizontal .bulb{ margin: 0 calc(var(--gap)/2); }
+
+/* Адаптивність — зменшуємо для маленьких екранів */
+@media (max-width: 420px){
+  :root{ --size: 92px; }
+}
+
+    </style>
+</head>
+<body>
+    <h1>Привіт козаки :)</h1>
+    <button class="btn btn-success" onclick="alert('Привіт мене натиснули')">
+        Нажми мене
+    </button>
+    <button class="btn btn-danger" onclick="handleClickMe()">
+        Нажми мене виклик функції
+    </button>
+    <button class="btn btn-info" onclick="alert(this.innerHTML)">
+        Посилання на себе
+    </button>
+
+    <button id="btnCall" class="btn btn-primary" onclick="alert('Привіт! Ви ловите подію')">
+        Перехоплення події
+    </button>
+
+    <button id="myNewEvent" class="btn btn-warning">
+        Новий спосіб
+    </button>
+
+    <!-- Приклад HTML -->
+<div class="traffic-light" role="img" aria-label="Світлофор" aria-live="polite">
+  <div class="housing">
+    <div class="bulb red on" data-color="red" aria-hidden="true"></div>
+    <div class="bulb yellow" data-color="yellow" aria-hidden="true"></div>
+    <div class="bulb green" data-color="green" aria-hidden="true"></div>
+  </div>
+  <div class="pole"></div>
+</div>
+
+    <script>
+        function handleClickMe() 
+        {
+            alert("Натислуни через функцію");
+        }
+
+        btnCall.onclick = function() {
+            alert("Ми перехопили подію");
+        }
+        myNewEvent.onclick = handleClickMe; //Це привязка 1 раз
+        // Event DOM 2
+        // myNewEvent.addEventListener('click', function() {
+        //     alert("Ми натиснули на кнопку")
+        // });
+        // myNewEvent.addEventListener('click', function() {
+        //     alert("Це наступна подія")
+        // });
+    </script>
+</body>
+</html>
